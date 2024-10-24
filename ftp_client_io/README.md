@@ -11,5 +11,5 @@ In `pubspec.yaml`:
     git:
       url: https://github.com/tekartik/ftp.dart
       ref: dart3a
-      path: ftp_io
+      path: ftp_client_io
 ```
