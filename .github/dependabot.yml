@@ -1,0 +1,27 @@
+# Dependabot configuration file.
+# See https://docs.github.com/en/code-security/dependabot/dependabot-version-updates
+version: 2
+
+enable-beta-ecosystems: true
+
+updates:
+  - package-ecosystem: "pub"
+    directory: "ftp"
+    schedule:
+      interval: "monthly"
+  - package-ecosystem: "pub"
+    directory: "ftp_client_io"
+    schedule:
+      interval: "monthly"
+  - package-ecosystem: "pub"
+    directory: "ftp_io"
+    schedule:
+      interval: "monthly"
+  - package-ecosystem: "pub"
+    directory: "ftp_server_io"
+    schedule:
+      interval: "monthly"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"

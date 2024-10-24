@@ -1,0 +1,29 @@
+name: tekartik_ftp_server_io
+description: Server io implementation
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: ^3.5.0
+
+# Add regular dependencies here.
+dependencies:
+  tekartik_ftp:
+    git:
+      url: https://github.com/tekartik/ftp.dart
+      ref: dart3a
+      path: ftp
+  ftp_server: ">=1.0.4"
+  path: ">=1.9.0"
+dev_dependencies:
+  lints: ">=5.0.0"
+  tekartik_lints:
+    git:
+      url: https://github.com/tekartik/common.dart
+      ref: dart3a
+      path: packages/lints
+  test: ">=1.24.0"
+
+dependency_overrides:
+  tekartik_ftp:
+    path: ../ftp

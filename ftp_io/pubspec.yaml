@@ -1,0 +1,43 @@
+name: tekartik_ftp_io
+description: Server and client io implementation
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: ^3.5.0
+
+# Add regular dependencies here.
+dependencies:
+  fs_shim: ">=2.3.3+1"
+  path: ">=1.9.0"
+  tekartik_ftp:
+    git:
+      url: https://github.com/tekartik/ftp.dart
+      ref: dart3a
+      path: ftp
+  tekartik_ftp_client_io:
+    git:
+      url: https://github.com/tekartik/ftp.dart
+      ref: dart3a
+      path: ftp_io
+  tekartik_ftp_server_io:
+    git:
+      url: https://github.com/tekartik/ftp.dart
+      ref: dart3a
+      path: ftp_server_io
+dev_dependencies:
+  lints: ">=5.0.0"
+  tekartik_lints:
+    git:
+      url: https://github.com/tekartik/common.dart
+      ref: dart3a
+      path: packages/lints
+  test: ">=1.24.0"
+
+dependency_overrides:
+  tekartik_ftp:
+    path: ../ftp
+  tekartik_ftp_client_io:
+    path: ../ftp_client_io
+  tekartik_ftp_server_io:
+    path: ../ftp_server_io
