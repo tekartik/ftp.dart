@@ -1,15 +1,15 @@
-# ftp_server_io
+# ftp_io
 
-FTP server io implementation
+FTP client and server io implementation and test
 
 ## Setup
 
 In `pubspec.yaml`:
 
 ```yaml
-  tekartik_ftp_server_io:
+  tekartik_ftp_io:
     git:
       url: https://github.com/tekartik/ftp.dart
       ref: dart3a
-      path: ftp_server_io
+      path: ftp_io
 ```
