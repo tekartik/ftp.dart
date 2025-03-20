@@ -33,11 +33,5 @@ dev_dependencies:
       ref: dart3a
       path: packages/lints
   test: ">=1.24.0"
+resolution: workspace
 
-dependency_overrides:
-  tekartik_ftp:
-    path: ../ftp
-  tekartik_ftp_client_io:
-    path: ../ftp_client_io
-  tekartik_ftp_server_io:
-    path: ../ftp_server_io
