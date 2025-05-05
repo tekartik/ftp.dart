@@ -18,10 +18,7 @@ abstract class FtpClient {
   Future<bool> downloadFile(String remoteName, File localFile);
 
   /// Update file
-  Future<bool> uploadFile(
-    File localFile,
-    String remoteName,
-  );
+  Future<bool> uploadFile(File localFile, String remoteName);
 }
 
 /// FTP entry
@@ -51,5 +48,5 @@ enum FtpEntryType {
   link,
 
   /// Unknown
-  unknown
+  unknown,
 }

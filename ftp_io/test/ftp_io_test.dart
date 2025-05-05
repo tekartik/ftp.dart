@@ -31,7 +31,11 @@ Future<void> main() async {
       await server.start();
 
       client = FtpClientIo(
-          host: 'localhost', user: 'admin', password: 'admin', port: port);
+        host: 'localhost',
+        user: 'admin',
+        password: 'admin',
+        port: port,
+      );
       await client.connect();
     });
     tearDownAll(() async {
@@ -70,8 +74,9 @@ Future<void> main() async {
       try {
         var entries = await client.list();
         expect(entries, isEmpty);
-        await File(join(serverDir.path, 'test.txt'))
-            .writeAsString('some_content');
+        await File(
+          join(serverDir.path, 'test.txt'),
+        ).writeAsString('some_content');
         entries = await client.list();
         expect(entries.length, 1);
         var file = entries.first;

@@ -19,13 +19,17 @@ void _log(Object? message) {
 /// Ftp client using io
 abstract class FtpClientIo implements FtpClient {
   /// Constructor
-  factory FtpClientIo(
-          {required String host,
-          required String user,
-          required String password,
-          int? port}) =>
-      _FtpClientFtpConnect(
-          host: host, user: user, password: password, port: port);
+  factory FtpClientIo({
+    required String host,
+    required String user,
+    required String password,
+    int? port,
+  }) => _FtpClientFtpConnect(
+    host: host,
+    user: user,
+    password: password,
+    port: port,
+  );
 }
 
 /// Ftp client using ftpconnect
@@ -43,16 +47,19 @@ class _FtpClientFtpConnect implements FtpClientIo {
   }
 
   /// Constructor
-  _FtpClientFtpConnect(
-      {required String host,
-      required String user,
-      required String password,
-      int? port}) {
-    _delegate = fc.FTPConnect(host,
-        port: port,
-        user: user,
-        pass: password,
-        securityType: fc.SecurityType.FTP);
+  _FtpClientFtpConnect({
+    required String host,
+    required String user,
+    required String password,
+    int? port,
+  }) {
+    _delegate = fc.FTPConnect(
+      host,
+      port: port,
+      user: user,
+      pass: password,
+      securityType: fc.SecurityType.FTP,
+    );
   }
 
   @override
