@@ -87,8 +87,9 @@ Future<void> main() async {
         await Directory(join(serverDir.path, 'sub')).create(recursive: true);
         entries = await client.list();
         expect(entries.length, 2);
-        var entryDir =
-            entries.where((entry) => entry.type == FtpEntryType.dir).first;
+        var entryDir = entries
+            .where((entry) => entry.type == FtpEntryType.dir)
+            .first;
         expect(entryDir.name, 'sub');
       } finally {
         await leaveDir();
