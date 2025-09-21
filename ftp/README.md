@@ -10,6 +10,5 @@ In `pubspec.yaml`:
   tekartik_ftp:
     git:
       url: https://github.com/tekartik/ftp.dart
-      ref: dart3a
       path: ftp
 ```

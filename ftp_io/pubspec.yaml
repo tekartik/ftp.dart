@@ -13,24 +13,20 @@ dependencies:
   tekartik_ftp:
     git:
       url: https://github.com/tekartik/ftp.dart
-      ref: dart3a
       path: ftp
   tekartik_ftp_client_io:
     git:
       url: https://github.com/tekartik/ftp.dart
-      ref: dart3a
       path: ftp_client_io
   tekartik_ftp_server_io:
     git:
       url: https://github.com/tekartik/ftp.dart
-      ref: dart3a
       path: ftp_server_io
 dev_dependencies:
   lints: ">=5.0.0"
   tekartik_lints:
     git:
       url: https://github.com/tekartik/common.dart
-      ref: dart3a
       path: packages/lints
   test: ">=1.24.0"
 resolution: workspace

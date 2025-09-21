@@ -11,7 +11,6 @@ dependencies:
   tekartik_ftp:
     git:
       url: https://github.com/tekartik/ftp.dart
-      ref: dart3a
       path: ftp
   ftp_server: ">=1.0.4"
   path: ">=1.9.0"
@@ -20,7 +19,6 @@ dev_dependencies:
   tekartik_lints:
     git:
       url: https://github.com/tekartik/common.dart
-      ref: dart3a
       path: packages/lints
   test: ">=1.24.0"
 dependency_overrides:
