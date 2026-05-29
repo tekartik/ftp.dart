@@ -4,12 +4,12 @@ version: 1.0.0
 publish_to: none
 
 environment:
-  sdk: ^3.9.0
+  sdk: ^3.12.0
 
 # Add regular dependencies here.
 dependencies:
   fs_shim: ">=2.3.3+1"
-  path: ">=1.9.0"
+  path: ">=1.9.1"
   tekartik_ftp:
     git:
       url: https://github.com/tekartik/ftp.dart
@@ -23,11 +23,11 @@ dependencies:
       url: https://github.com/tekartik/ftp.dart
       path: ftp_server_io
 dev_dependencies:
-  lints: ">=5.0.0"
+  lints: ">=6.1.0"
   tekartik_lints:
     git:
       url: https://github.com/tekartik/common.dart
       path: packages/lints
-  test: ">=1.24.0"
+  test: ">=1.31.0"
 resolution: workspace
 
