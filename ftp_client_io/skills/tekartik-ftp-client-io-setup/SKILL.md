@@ -63,7 +63,8 @@ interface, so application code keeps talking to `FtpClient`.
 * A remote name (`cd`, `downloadFile`, `uploadFile`), a user or a password
   containing a CR or a LF throws an `ArgumentError` (the constructor for the
   credentials): sent as is it would inject FTP commands. The password is
-  never printed in the error.
+  never printed in the error. With an empty remote name, `uploadFile` sends
+  the local file name: the local path is checked then.
 * Plain FTP only: the client hardcodes `SecurityType.FTP`, so no FTPS/FTPES,
   no implicit TLS on 990, no certificate handling. Credentials and data go
   over the wire unencrypted — use it on a trusted network, or tunnel it.

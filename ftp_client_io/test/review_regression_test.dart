@@ -87,6 +87,30 @@ void main() {
       await client.disconnect();
     }, timeout: const Timeout(Duration(seconds: 30)));
 
+    test('an empty remote name cannot inject a command', () async {
+      var client = FtpClientIo(
+        host: '127.0.0.1',
+        user: 'user',
+        password: 'password',
+        port: server.port,
+      );
+      expect(await client.connect(), isTrue);
+      // ftpconnect sends the local file name when the remote name is empty.
+      try {
+        await client.uploadFile(
+          File('${Directory.systemTemp.path}/x.txt\r\nDELE secret.txt'),
+          '',
+        );
+        fail('should fail');
+      } on ArgumentError catch (_) {}
+      await Future<void>.delayed(const Duration(milliseconds: 500));
+      expect(server.commands, isNot(contains('DELE secret.txt')));
+      expect(server.commands, isNot(contains('PASV')));
+      try {
+        await client.disconnect();
+      } catch (_) {}
+    }, timeout: const Timeout(Duration(seconds: 30)));
+
     test('credentials cannot inject a command', () async {
       expect(
         () => FtpClientIo(

@@ -43,7 +43,10 @@ client.
   then `FtpClientIo(host: 'localhost', user:, password:, port:)` and
   `await client.connect()`. Tear down in the reverse order:
   `await client.disconnect()` then `await server.stop()`, or the VM process
-  keeps the port open and never exits.
+  keeps the port open and never exits. Even then, once a transfer was served
+  (`list`, upload, download), ftp_server 2.3.2 keeps the process alive after
+  `stop()`: a command line program ends with `exit(0)` (the test runner
+  exits by itself).
 * The server root must exist before `FtpServerIo(...)` is called, otherwise the
   factory throws `ArgumentError: Root directory does not exist`. In tests use
   `Directory(path).emptyOrCreate()` from
@@ -71,8 +74,8 @@ client.
   failure shows up where it happens.
 * Dart VM only: mark the test library `@TestOn('vm')`, and run it with
   `dart test`. The server binds every IPv4 interface, is read/write over its
-  whole root and enforces no credentials, so point it at a disposable
-  directory only — the `tekartik_ftp_server_io` skill lists those limits.
+  whole root and accepts any login when no `username`/`password` is given,
+  so give credentials and point it at a disposable directory only — the `tekartik_ftp_server_io` skill lists those limits.
 * Code that is not the wiring should take `FtpClient` / `FtpServer`, not the
   io types: keep `FtpClientIo` and `FtpServerIo` in `main` or in `setUpAll`.
 
@@ -126,6 +129,7 @@ Future<void> main() async {
     await client.disconnect();
     await server.stop();
   }
+  exit(0); // ftp_server keeps the process alive after a transfer
 }
 ```
 
@@ -285,6 +289,7 @@ Future<void> main() async {
   } finally {
     await fixture.close();
   }
+  exit(0); // ftp_server keeps the process alive after a transfer
 }
 ```
 

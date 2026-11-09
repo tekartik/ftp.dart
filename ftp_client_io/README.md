@@ -65,7 +65,9 @@ your variables and parameters as `FtpClient`.
   `FTPConnectException` (connection, timeout, refused login, missing file).
   Check the result and catch.
 * A name, user or password containing a line break (CR or LF) throws an
-  `ArgumentError`: sent as is it would inject FTP commands.
+  `ArgumentError`: sent as is it would inject FTP commands. With an empty
+  remote name, `uploadFile` sends the local file name: the local path is
+  checked then.
 * `list()` has no path argument: `cd` first. Create the local directory
   before `downloadFile`.
 * `size` is `-1` when unknown, and meaningless for a directory.

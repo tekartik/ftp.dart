@@ -108,7 +108,12 @@ class _FtpClientFtpConnect implements FtpClientIo {
 
   @override
   Future<bool> uploadFile(File localFile, String remoteName) async {
-    _checkNoLineBreak(remoteName, 'remoteName');
+    if (remoteName.isEmpty) {
+      // ftpconnect then sends the local file name.
+      _checkNoLineBreak(localFile.path, 'localFile');
+    } else {
+      _checkNoLineBreak(remoteName, 'remoteName');
+    }
     if (_debug) {
       _log('upload $localFile to $remoteName');
     }
