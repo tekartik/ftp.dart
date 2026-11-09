@@ -56,9 +56,14 @@ interface, so application code keeps talking to `FtpClient`.
   local parent directory yourself before downloading — the client does not.
 * Failures come in two shapes: a `false` result (the server refused, e.g. `cd`
   to a missing directory) and a thrown `FTPConnectException` from the
-  underlying `ftpconnect` package (socket closed, timeout, missing remote
-  file). Check the bool *and* wrap network work in `try`/`catch`, catching
+  underlying `ftpconnect` package (socket closed, timeout, refused login,
+  missing remote file). `connect()` returns `true` or throws, it never returns
+  `false`. Check the bool *and* wrap network work in `try`/`catch`, catching
   `Object` if you do not want `ftpconnect` in your imports.
+* A remote name (`cd`, `downloadFile`, `uploadFile`), a user or a password
+  containing a CR or a LF throws an `ArgumentError` (the constructor for the
+  credentials): sent as is it would inject FTP commands. The password is
+  never printed in the error.
 * Plain FTP only: the client hardcodes `SecurityType.FTP`, so no FTPS/FTPES,
   no implicit TLS on 990, no certificate handling. Credentials and data go
   over the wire unencrypted — use it on a trusted network, or tunnel it.

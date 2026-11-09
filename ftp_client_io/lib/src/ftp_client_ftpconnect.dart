@@ -16,9 +16,24 @@ void _log(Object? message) {
   }
 }
 
+/// Throws an [ArgumentError] if [value] contains a CR or a LF: sent as is on
+/// the control connection, it would inject FTP commands.
+void _checkNoLineBreak(String value, String name) {
+  if (value.contains('\r') || value.contains('\n')) {
+    throw ArgumentError.value(
+      // Never print a credential
+      name == 'password' ? '***' : value,
+      name,
+      'must not contain a line break',
+    );
+  }
+}
+
 /// Ftp client using io
 abstract class FtpClientIo implements FtpClient {
   /// Constructor
+  ///
+  /// Throws an [ArgumentError] if [user] or [password] contains a line break.
   factory FtpClientIo({
     required String host,
     required String user,
@@ -53,6 +68,8 @@ class _FtpClientFtpConnect implements FtpClientIo {
     required String password,
     int? port,
   }) {
+    _checkNoLineBreak(user, 'user');
+    _checkNoLineBreak(password, 'password');
     _delegate = fc.FTPConnect(
       host,
       port: port,
@@ -73,6 +90,7 @@ class _FtpClientFtpConnect implements FtpClientIo {
 
   @override
   Future<bool> downloadFile(String remoteName, File localFile) async {
+    _checkNoLineBreak(remoteName, 'remoteName');
     if (_debug) {
       _log('download $remoteName to $localFile');
     }
@@ -81,6 +99,7 @@ class _FtpClientFtpConnect implements FtpClientIo {
 
   @override
   Future<bool> cd(String path) async {
+    _checkNoLineBreak(path, 'path');
     if (_debug) {
       _log('cd $path');
     }
@@ -89,6 +108,7 @@ class _FtpClientFtpConnect implements FtpClientIo {
 
   @override
   Future<bool> uploadFile(File localFile, String remoteName) async {
+    _checkNoLineBreak(remoteName, 'remoteName');
     if (_debug) {
       _log('upload $localFile to $remoteName');
     }
