@@ -14,7 +14,12 @@ abstract class FtpServerIo implements FtpServer {
     String? username,
     String? password,
   }) {
-    return _FtpServerIoImpl(port: port, root: root);
+    return _FtpServerIoImpl(
+      port: port,
+      root: root,
+      username: username,
+      password: password,
+    );
   }
 }
 
